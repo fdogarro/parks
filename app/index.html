@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="signApp">
+  <head>
+    <meta charset="utf-8"/>
+    <title>NYC Park Tales</title>
+   <!--  Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- CSS -->
+    <link href='http://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
+    <link href="css/app.css" rel="stylesheet"/>
+   <!--  Angular -->
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular/angular.min.js.map"></script>
+    <script src="lib/jquery/jquery-1.10.2.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+    <!-- JS -->
+     <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body ng-controller="SignCtrl">
+    <div class="jumbo">  
+      <h1>NYC Park Tales</h1>
+      <p class="subtitle">The Stories Behind Some of New York's Most Hidden Treasures.</p>
+      <input id="search" type="text" ng-model="query"/>
+      <select ng-model="orderProp">
+        <option value="name">Alphabetical</option>
+        <option value="-name">Reverse</option>
+        <option value="borough">Borough</option>
+        <option value="location">Latest</option>
+      </select>
+    </div>
+    <div class="sign-container container">
+      <ul>
+        <li ng-repeat="sign in signs | filter:query | orderBy:orderProp" class =" sign">
+          <div class="info">
+            <h4>{{sign.name}}</h4>
+            <p>{{sign.borough}}</p>
+            <div class="text-container">
+            read more: <input id="ch" type="checkbox">
+            <label for="ch"></label>
+              <div class="text-shorten">{{sign.content}}</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
